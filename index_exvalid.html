@@ -6,8 +6,9 @@
   <link rel="shortcut icon" href="favicon.ico" />  
   <link rel="stylesheet" href="estilo.css">
 </head>
+
 <body>
-  <form id="ex1" action="index.html" method="" accept-charset="utf-8">
+  <form id="ex1" action="index_exvalid.html" method="post" accept-charset="utf-8">
   	<label for="localidade">Localidade</label>
   	<input id="localidade" type="text" name="localidade" value="">
     
@@ -19,11 +20,53 @@
     <input id="email2" type="email" name="email2" value=""><br>
     
     <br></br>
-    <input type="submit" value="OK">
+    <input type="submit">
+    </form> 
 
-    <script src="jquery.js"></script>
+  <script src="jquery.js"></script>
   <script src="jquery-validation/dist/jquery.validate.js"></script>
   
-  </form>	
+
+  <script> 
+  $("#ex1").validate(
+  {
+    rules:{
+
+      localidade: {
+        required: true,
+        minlength: 5,
+      },
+
+
+      email1: {
+        required: true,
+        minlength: 5,
+      },
+
+      email2: {
+        required: true,
+        minlength: 5,
+        equalTo: "#email1",
+      },
+    },
+
+    messages:{
+      localidade:'a localida tem de ter mais de 5 caractares',
+
+      email1: {
+        required: "email obrigatorio"
+      },
+      
+      email2: {
+        required: "repita o seu email",
+        minlength: jQuery.validator.format("insira pelo menos {0} characters"),
+        equalTo: "devem ser iguais",
+      },    
+
+    },
+  }
+    );
+  </script>
+
 </body>
 </html>
